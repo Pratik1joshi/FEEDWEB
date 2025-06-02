@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Province 1",
+        "projects": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[87.0, 27.3], [87.8, 26.8], [88.2, 26.4], [87.8, 26.2], [87.2, 26.4], [86.8, 26.6], [86.6, 27.0], [86.8, 27.4], [87.0, 27.3]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Madhesh Province",
+        "projects": 2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[85.2, 27.0], [86.6, 26.8], [87.0, 26.4], [86.8, 26.2], [85.4, 26.4], [85.0, 26.6], [85.2, 27.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bagmati Province",
+        "projects": 7
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[85.0, 28.2], [85.8, 28.0], [86.2, 27.6], [85.8, 27.4], [85.2, 27.6], [84.8, 27.8], [85.0, 28.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gandaki Province",
+        "projects": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[83.6, 28.8], [84.4, 28.6], [84.8, 28.2], [84.4, 28.0], [83.8, 28.2], [83.4, 28.4], [83.6, 28.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lumbini Province",
+        "projects": 3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[82.4, 28.4], [83.2, 28.2], [83.6, 27.8], [83.2, 27.6], [82.6, 27.8], [82.2, 28.0], [82.4, 28.4]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karnali Province",
+        "projects": 2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[81.2, 30.0], [82.0, 29.8], [82.4, 29.4], [82.0, 29.2], [81.4, 29.4], [81.0, 29.6], [81.2, 30.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sudurpaschim Province",
+        "projects": 3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[80.0, 29.6], [80.8, 29.4], [81.2, 29.0], [80.8, 28.8], [80.2, 29.0], [79.8, 29.2], [80.0, 29.6]]]
+      }
+    }
+  ]
+} 
