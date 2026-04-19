@@ -1,0 +1,519 @@
+/* RichContentRenderer CSS - Styles for rendering TipTap HTML content */
+
+.rich-content-renderer {
+  position: relative;
+}
+
+.rich-content {
+  color: #1f2937;
+  line-height: 1.75;
+}
+
+/* Headings */
+.rich-content h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  line-height: 1.25;
+}
+
+.rich-content h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.25rem;
+  margin-top: 1.75rem;
+  line-height: 1.25;
+}
+
+.rich-content h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  line-height: 1.25;
+}
+
+.rich-content h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+  line-height: 1.25;
+}
+
+.rich-content h5 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  margin-top: 1rem;
+  line-height: 1.25;
+}
+
+.rich-content h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  line-height: 1.25;
+}
+
+/* Paragraphs */
+.rich-content p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.rich-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Text formatting */
+.rich-content strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.rich-content em {
+  font-style: italic;
+}
+
+.rich-content u {
+  text-decoration: underline;
+}
+
+.rich-content s {
+  text-decoration: line-through;
+}
+
+.rich-content mark {
+  background-color: #fef3c7;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content code {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: 'Courier New', monospace;
+}
+
+.rich-content pre {
+  background-color: #111827;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.rich-content pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* Subscript and Superscript */
+.rich-content sub {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  vertical-align: sub;
+}
+
+.rich-content sup {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  vertical-align: super;
+}
+
+/* Lists */
+.rich-content ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rich-content ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rich-content li {
+  line-height: 1.75;
+}
+
+.rich-content ul ul,
+.rich-content ol ol,
+.rich-content ul ol,
+.rich-content ol ul {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+.rich-content blockquote {
+  border-left: 4px solid #3b82f6;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: #4b5563;
+  background-color: #f9fafb;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Horizontal Rules */
+.rich-content hr {
+  margin: 2rem 0;
+  border: 0;
+  height: 1px;
+  background-color: #d1d5db;
+}
+
+/* Tables */
+.rich-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.rich-content th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rich-content td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rich-content tr:last-child td {
+  border-bottom: 0;
+}
+
+.rich-content tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Images */
+.rich-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.rich-content img.image-left {
+  float: left;
+  display: inline;
+  margin: 0 1rem 1rem 0;
+}
+
+.rich-content img.image-right {
+  float: right;
+  display: inline;
+  margin: 0 0 1rem 1rem;
+}
+
+.rich-content img.image-center {
+  float: none;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+/* Image with inline styles - preserve float and positioning */
+.rich-content img[style*="float: left"] {
+  float: left !important;
+  margin: 0 1em 1em 0 !important;
+  max-width: 50% !important;
+}
+
+.rich-content img[style*="float: right"] {
+  float: right !important;
+  margin: 0 0 1em 1em !important;
+  max-width: 50% !important;
+}
+
+.rich-content img[style*="float: none"],
+.rich-content img[style*="margin: 1.5em auto"] {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+}
+
+/* Clearfix for content with floated images */
+.rich-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Ensure paragraphs flow around floated images */
+.rich-content p {
+  overflow: visible;
+  clear: none;
+}
+
+.rich-content figure {
+  margin-bottom: 1.5rem;
+}
+
+.rich-content figcaption {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Links */
+.rich-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.rich-content a:hover {
+  color: #1d4ed8;
+}
+
+/* Color classes that match the TipTap editor */
+.rich-content .text-red {
+  color: #dc2626;
+}
+
+.rich-content .text-orange {
+  color: #ea580c;
+}
+
+.rich-content .text-yellow {
+  color: #ca8a04;
+}
+
+.rich-content .text-green {
+  color: #16a34a;
+}
+
+.rich-content .text-blue {
+  color: #2563eb;
+}
+
+.rich-content .text-purple {
+  color: #9333ea;
+}
+
+.rich-content .text-pink {
+  color: #db2777;
+}
+
+.rich-content .text-gray {
+  color: #6b7280;
+}
+
+/* Background color classes */
+.rich-content .bg-red {
+  background-color: #fef2f2;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-orange {
+  background-color: #fff7ed;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-yellow {
+  background-color: #fefce8;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-green {
+  background-color: #f0fdf4;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-blue {
+  background-color: #eff6ff;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-purple {
+  background-color: #faf5ff;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-pink {
+  background-color: #fdf2f8;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rich-content .bg-gray {
+  background-color: #f3f4f6;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* Font families */
+.rich-content .font-serif {
+  font-family: 'Times New Roman', serif;
+}
+
+.rich-content .font-mono {
+  font-family: 'Courier New', monospace;
+}
+
+.rich-content .font-sans {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Text alignment */
+.rich-content .text-left {
+  text-align: left;
+}
+
+.rich-content .text-center {
+  text-align: center;
+}
+
+.rich-content .text-right {
+  text-align: right;
+}
+
+.rich-content .text-justify {
+  text-align: justify;
+}
+
+/* Image alignment and sizing classes */
+.rich-content .image-left {
+  float: left;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.rich-content .image-right {
+  float: right;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.rich-content .image-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.rich-content .image-small {
+  width: 8rem;
+}
+
+.rich-content .image-medium {
+  width: 16rem;
+}
+
+.rich-content .image-large {
+  width: 24rem;
+}
+
+.rich-content .image-full {
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .rich-content h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  .rich-content h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .rich-content h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .rich-content table {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .rich-content .image-left,
+  .rich-content .image-right {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .rich-content .image-large {
+    width: 100%;
+  }
+  
+  .rich-content .image-medium {
+    width: 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .rich-content {
+    color: #000000;
+  }
+  
+  .rich-content a {
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .rich-content a:after {
+    content: ' (' attr(href) ')';
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #4b5563;
+  }
+}

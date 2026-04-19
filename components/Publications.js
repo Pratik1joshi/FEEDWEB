@@ -1,5 +1,6 @@
 import { Download, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import RichContentRenderer from "./RichContentRenderer"
 
 export default function Publications() {
   const sidePublications = [
@@ -33,7 +34,7 @@ export default function Publications() {
   ]
 
   return (
-    <section className="py-20 bg-white" id="publications">
+    <section className="px-12 py-20 bg-white" id="publications">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif font-bold text-[#1A365D] mb-4">Latest Publications</h2>
@@ -94,7 +95,12 @@ export default function Publications() {
                     <span className="text-sm font-medium text-[#B22234]">{publication.type}</span>
                   </div>
                   <h3 className="text-xl font-serif font-bold text-[#1A365D] mb-2">{publication.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{publication.excerpt}</p>
+                  <div className="text-gray-600 text-sm mb-4">
+                    <RichContentRenderer 
+                      content={publication.excerpt}
+                      maxHeight="60px"
+                    />
+                  </div>
                   <a
                     href={`/publications/${publication.title.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-[#1A365D] font-medium inline-flex items-center hover:text-[#B22234] transition-colors duration-300 cursor-pointer"

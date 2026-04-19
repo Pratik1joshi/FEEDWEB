@@ -1,7 +1,20 @@
-import { Leaf, Zap, Heart, ArrowRight } from "lucide-react"
+import { Leaf, Zap, Heart, ArrowRight, Building, Cpu, Users } from "lucide-react"
+import { useServices } from '../src/hooks/useApi'
+
+const iconMap = {
+  Leaf,
+  Zap,
+  Heart,
+  Building,
+  Cpu,
+  Users
+}
 
 export default function FocusAreas() {
-  const focusAreas = [
+  const { data: servicesData, loading, error } = useServices({ featured: true });
+  
+  // Fallback data in case API fails
+  const fallbackFocusAreas = [
     {
       icon: Leaf,
       title: "Environmental Sustainability",
@@ -20,10 +33,19 @@ export default function FocusAreas() {
       description:
         "Building partnerships between governments, businesses, and communities to implement effective environmental policies.",
     },
-  ]
+  ];
+
+  // Use API data if available, otherwise use fallback
+  const focusAreas = servicesData?.data?.length > 0 
+    ? servicesData.data.slice(0, 3).map(service => ({
+        icon: iconMap[service.icon] || Leaf,
+        title: service.title,
+        description: service.short_description || service.description.substring(0, 200) + '...',
+      }))
+    : fallbackFocusAreas;
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 px-12 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif font-bold text-[#1A365D] mb-4">Our Key Focus Areas</h2>
@@ -32,6 +54,20 @@ export default function FocusAreas() {
             create a better future for all.
           </p>
         </div>
+        
+        {loading && (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1A365D] mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading our focus areas...</p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="text-center py-8">
+            <p className="text-red-600 mb-4">Failed to load focus areas</p>
+          </div>
+        )}
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {focusAreas.map((item, index) => (
             <div

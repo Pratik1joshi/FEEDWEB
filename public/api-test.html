@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testAPIs() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test detailed projects
+                const detailedResponse = await fetch('http://localhost:5000/api/projects?type=detailed&limit=5');
+                const detailedData = await detailedResponse.json();
+                
+                // Test map projects
+                const mapResponse = await fetch('http://localhost:5000/api/projects?type=map&limit=5');
+                const mapData = await mapResponse.json();
+                
+                results.innerHTML = `
+                    <h2>Detailed Projects:</h2>
+                    <p>Total: ${detailedData.pagination?.total || 'Unknown'}</p>
+                    <p>Count: ${detailedData.data?.length || 0}</p>
+                    <ul>
+                        ${detailedData.data?.map(p => `<li>${p.id}: ${p.title} (${p.type})</li>`).join('') || 'None'}
+                    </ul>
+                    
+                    <h2>Map Projects:</h2>
+                    <p>Total: ${mapData.pagination?.total || 'Unknown'}</p>
+                    <p>Count: ${mapData.data?.length || 0}</p>
+                    <ul>
+                        ${mapData.data?.slice(0, 3).map(p => `<li>${p.id}: ${p.title} (${p.type})</li>`).join('') || 'None'}
+                    </ul>
+                `;
+            } catch (error) {
+                results.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        testAPIs();
+    </script>
+</body>
+</html>

@@ -18,6 +18,11 @@ export const metadata = {
   title: "FEED - Forum for Energy and Environment Development",
   description:
     "Leading the transformation towards clean energy and environmental sustainability through innovative research, policy development, and strategic partnerships.",
+  icons: {
+    icon: [{ url: "/feed_logo.png", type: "image/png" }],
+    shortcut: "/feed_logo.png",
+    apple: "/feed_logo.png",
+  },
 }
 
 export default function RootLayout({ children }) {
