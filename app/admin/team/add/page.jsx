@@ -1,11 +1,18 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AdminLayout from '../../../../components/AdminLayout';
 import FileUpload from '../../../../components/FileUpload';
 import BasicRichTextEditor from '../../../../components/rich-text-editor/BasicRichTextEditor';
-import { teamApi } from '../../../../src/lib/api-team';
-import { TEAM_FORM_INITIAL_STATE, DEPARTMENT_OPTIONS, validateTeamForm, cleanTeamData } from '../../../../lib/team-form-config';
+import { teamApi, teamSettingsApi } from '../../../../src/lib/api-team';
+import {
+  TEAM_FORM_INITIAL_STATE,
+  DEFAULT_TEAM_ROLE_OPTIONS,
+  DEFAULT_TEAM_DEPARTMENT_OPTIONS,
+  validateTeamForm,
+  cleanTeamData,
+} from '../../../../lib/team-form-config';
 import { 
   Save, 
   ArrowLeft, 
@@ -27,8 +34,37 @@ export default function AddTeamMember() {
   
   // Form data matching database schema
   const [formData, setFormData] = useState(TEAM_FORM_INITIAL_STATE);
+  const [roleOptions, setRoleOptions] = useState(DEFAULT_TEAM_ROLE_OPTIONS);
+  const [departmentOptions, setDepartmentOptions] = useState(DEFAULT_TEAM_DEPARTMENT_OPTIONS);
 
-  const departments = DEPARTMENT_OPTIONS;
+  useEffect(() => {
+    const loadTeamSettings = async () => {
+      try {
+        const response = await teamSettingsApi.getAll();
+        const payload = response?.data && !Array.isArray(response.data) ? response.data : response;
+
+        const roles = Array.isArray(payload?.roles)
+          ? payload.roles.filter((option) => option.is_active).map((option) => option.label)
+          : [];
+
+        const departments = Array.isArray(payload?.departments)
+          ? payload.departments.filter((option) => option.is_active).map((option) => option.label)
+          : [];
+
+        if (roles.length > 0) {
+          setRoleOptions(roles);
+        }
+
+        if (departments.length > 0) {
+          setDepartmentOptions(departments);
+        }
+      } catch (error) {
+        console.error('Error loading team settings options:', error);
+      }
+    };
+
+    loadTeamSettings();
+  }, []);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
@@ -165,12 +201,25 @@ export default function AddTeamMember() {
                   </label>
                   <input
                     type="text"
+                    list="team-role-options"
                     value={formData.position}
                     onChange={(e) => handleInputChange('position', e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="e.g., Executive Director"
                     required
                   />
+                  <datalist id="team-role-options">
+                    {roleOptions.map((role) => (
+                      <option key={role} value={role} />
+                    ))}
+                  </datalist>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Need a new role?{' '}
+                    <Link href="/admin/team/settings" className="text-[#1A365D] hover:underline">
+                      Manage team settings
+                    </Link>
+                    .
+                  </p>
                 </div>
 
                 <div>
@@ -184,12 +233,19 @@ export default function AddTeamMember() {
                     required
                   >
                     <option value="">Select Department</option>
-                    {departments.map(dept => (
+                    {departmentOptions.map((dept) => (
                       <option key={dept} value={dept}>
                         {dept}
                       </option>
                     ))}
                   </select>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Need a new department?{' '}
+                    <Link href="/admin/team/settings" className="text-[#1A365D] hover:underline">
+                      Manage team settings
+                    </Link>
+                    .
+                  </p>
                 </div>
 
                 <div>

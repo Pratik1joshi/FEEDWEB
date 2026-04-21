@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Search, Filter, Plus, Eye, Edit, Trash2, Mail, Phone, MapPin } from 'lucide-react'
+import { Search, Filter, Plus, Eye, Edit, Trash2, Mail, Phone, Settings } from 'lucide-react'
 import { teamApi } from '@/src/lib/api-team'
 import AdminLayout from '@/components/AdminLayout'
 
@@ -83,13 +83,22 @@ export default function TeamManagement() {
         <div>
           <p className="text-gray-600">Manage team members and their information</p>
         </div>
-        <Link
-          href="/admin/team/add"
-          className="px-4 py-2 bg-[#1A365D] text-white rounded-lg hover:bg-opacity-90 flex items-center gap-2"
-        >
-          <Plus className="w-4 h-4" />
-          Add Team Member
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin/team/settings"
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
+            <Settings className="w-4 h-4" />
+            Team Settings
+          </Link>
+          <Link
+            href="/admin/team/add"
+            className="px-4 py-2 bg-[#1A365D] text-white rounded-lg hover:bg-opacity-90 flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            Add Team Member
+          </Link>
+        </div>
       </div>
 
       {/* Loading State */}

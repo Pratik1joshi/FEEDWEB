@@ -1,10 +1,17 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import AdminLayout from '../../../../../components/AdminLayout';
 import FileUpload from '../../../../../components/FileUpload';
-import { teamApi } from '../../../../../src/lib/api-team';
-import { TEAM_FORM_INITIAL_STATE, DEPARTMENT_OPTIONS, validateTeamForm, cleanTeamData } from '../../../../../lib/team-form-config';
+import { teamApi, teamSettingsApi } from '../../../../../src/lib/api-team';
+import {
+  TEAM_FORM_INITIAL_STATE,
+  DEFAULT_TEAM_ROLE_OPTIONS,
+  DEFAULT_TEAM_DEPARTMENT_OPTIONS,
+  validateTeamForm,
+  cleanTeamData,
+} from '../../../../../lib/team-form-config';
 import { 
   Save, 
   ArrowLeft, 
@@ -34,9 +41,39 @@ export default function EditTeamMember() {
   
   // Form data matching database schema
   const [formData, setFormData] = useState(TEAM_FORM_INITIAL_STATE);
+  const [roleOptions, setRoleOptions] = useState(DEFAULT_TEAM_ROLE_OPTIONS);
+  const [departmentOptions, setDepartmentOptions] = useState(DEFAULT_TEAM_DEPARTMENT_OPTIONS);
 
-  const departments = DEPARTMENT_OPTIONS;
   // Form data is initialized with defaults above
+
+  useEffect(() => {
+    const loadTeamSettings = async () => {
+      try {
+        const response = await teamSettingsApi.getAll();
+        const payload = response?.data && !Array.isArray(response.data) ? response.data : response;
+
+        const roles = Array.isArray(payload?.roles)
+          ? payload.roles.filter((option) => option.is_active).map((option) => option.label)
+          : [];
+
+        const departments = Array.isArray(payload?.departments)
+          ? payload.departments.filter((option) => option.is_active).map((option) => option.label)
+          : [];
+
+        if (roles.length > 0) {
+          setRoleOptions(roles);
+        }
+
+        if (departments.length > 0) {
+          setDepartmentOptions(departments);
+        }
+      } catch (error) {
+        console.error('Error loading team settings options:', error);
+      }
+    };
+
+    loadTeamSettings();
+  }, []);
   
   useEffect(() => {
     // Load real team member data from API
@@ -183,6 +220,9 @@ export default function EditTeamMember() {
     );
   }
 
+  const departmentSelectOptions = [...new Set([formData.department, ...departmentOptions].filter(Boolean))];
+  const roleInputOptions = [...new Set([formData.position, ...roleOptions].filter(Boolean))];
+
   return (
     <AdminLayout title="Edit Team Member">
       <div className="max-w-4xl mx-auto">
@@ -247,11 +287,24 @@ export default function EditTeamMember() {
                 </label>
                 <input
                   type="text"
+                  list="team-role-options"
                   value={formData.position}
                   onChange={(e) => handleInputChange('position', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 />
+                <datalist id="team-role-options">
+                  {roleInputOptions.map((role) => (
+                    <option key={role} value={role} />
+                  ))}
+                </datalist>
+                <p className="text-xs text-gray-500 mt-1">
+                  Need a new role?{' '}
+                  <Link href="/admin/team/settings" className="text-[#1A365D] hover:underline">
+                    Manage team settings
+                  </Link>
+                  .
+                </p>
               </div>
 
               <div>
@@ -264,13 +317,19 @@ export default function EditTeamMember() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="">Select Department</option>
-                  <option value="Leadership">Leadership</option>
-                  <option value="Research">Research</option>
-                  <option value="Operations">Operations</option>
-                  <option value="Communications">Communications</option>
-                  <option value="Finance">Finance</option>
-                  <option value="Programs">Programs</option>
+                  {departmentSelectOptions.map((department) => (
+                    <option key={department} value={department}>
+                      {department}
+                    </option>
+                  ))}
                 </select>
+                <p className="text-xs text-gray-500 mt-1">
+                  Need a new department?{' '}
+                  <Link href="/admin/team/settings" className="text-[#1A365D] hover:underline">
+                    Manage team settings
+                  </Link>
+                  .
+                </p>
               </div>
 
               <div>

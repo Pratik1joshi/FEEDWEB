@@ -10,3 +10,12 @@ export const teamApi = {
   update: (id, data) => apiClient.put(`/team/${id}`, data),
   delete: (id) => apiClient.delete(`/team/${id}`),
 };
+
+// Team role/department settings API
+export const teamSettingsApi = {
+  getAll: (params = {}) => apiClient.get('/team/settings', params),
+  getByType: (type, params = {}) => apiClient.get(`/team/settings/${type}`, params),
+  create: (data) => apiClient.post('/team/settings', data),
+  update: (id, data) => apiClient.put(`/team/settings/${id}`, data),
+  delete: (id) => apiClient.delete(`/team/settings/${id}`),
+};
